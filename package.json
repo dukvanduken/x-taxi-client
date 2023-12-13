@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "android:build": "cd ./android && ./gradlew assembleRelease && rm /Users/xen/Yandex.Disk.localized/_x-taxi-builds/client-* || true && cp ./app/build/outputs/apk/release/app-release.apk /Users/xen/Yandex.Disk.localized/_x-taxi-builds/client-$(date +'%Y-%m-%dT%H-%M-%S').apk && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
@@ -15,9 +16,11 @@
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-native": "0.71.6",
+    "react-native-toast-message": "^2.1.6",
     "react-native-webview": "react-native-community/react-native-webview",
     "react-native-yamap": "^4.1.18",
-    "socket.io-client": "^4.6.1"
+    "socket.io-client": "^4.6.1",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

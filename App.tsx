@@ -10,6 +10,7 @@ import { YaMap, Marker } from 'react-native-yamap'
 import type { CameraPosition } from 'react-native-yamap'
 import Geolocation from '@react-native-community/geolocation'
 import { io } from 'socket.io-client'
+import Toast from 'react-native-toast-message'
 
 import { NavButtons } from './components/nav-buttons'
 import { styles } from './App.styles'
@@ -19,8 +20,19 @@ import type { I_Coords } from './types'
 YaMap.init('448316e2-a305-4292-a570-5f3b029b55ba')
 
 
-// http://194.67.118.215
-const socket = io('http://194.67.118.215')
+const socket = io('wss://x-taxi.site', {
+  transports: [ 'websocket' ],
+})
+
+socket.on('connect', () => {
+  Toast.show({ type: 'success', text1: 'Connected' })
+})
+socket.on('disconnect', () => {
+  Toast.show({ type: 'error', text1: 'Disconnected' })
+})
+socket.on('connect_error', (err) => {
+  Toast.show({ type: 'error', text1: 'Connect Error: ' + JSON.stringify(err) })
+})
 
 
 const App: FC = () => {
@@ -66,6 +78,12 @@ const App: FC = () => {
 
   useEffect(() => {
     socket.on('newCoords', (newCoords: I_Coords) => {
+      Toast.show({
+        type: 'success',
+        text1: 'New coords got',
+        text2: JSON.stringify(newCoords),
+      })
+
       setTaxiCoords(newCoords)
     })
   }, [])
@@ -99,6 +117,8 @@ const App: FC = () => {
           />
         </View>
       </ScrollView>
+
+      <Toast />
     </SafeAreaView>
   )
 }

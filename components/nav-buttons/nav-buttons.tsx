@@ -67,7 +67,7 @@ export const NavButtons: FC<I_NavButtonsProps> = ({
         onPress={handleLocatorClick}
       >
         <Image
-          source={require('./images/locator.png')}
+          source={require('../../images/locator.png')}
           resizeMode='stretch'
           style={styles.btnImage}
         />
@@ -79,7 +79,7 @@ export const NavButtons: FC<I_NavButtonsProps> = ({
         onPress={handlePlusClick}
       >
         <Image
-          source={require('./images/plus.png')}
+          source={require('../../images/plus.png')}
           resizeMode='stretch'
           style={styles.btnImage}
         />
@@ -91,7 +91,7 @@ export const NavButtons: FC<I_NavButtonsProps> = ({
         onPress={handleMinusClick}
       >
         <Image
-          source={require('./images/minus.png')}
+          source={require('../../images/minus.png')}
           resizeMode='stretch'
           style={styles.btnImage}
         />
